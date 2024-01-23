@@ -16,7 +16,7 @@ for /f "tokens=1,* delims==" %%a in (!urlFile!) do (
         set "url=%%b"
 
         if not "!url!"=="" (
-            !wgetPath! -O !subFolder!\!fileName! -T !timeoutSeconds! -t 1 !url!
+            !wgetPath! -U "sing-box" -O !subFolder!\!fileName! -T !timeoutSeconds! -t 1 !url!
             
             if errorlevel 1 (
                 echo "CONFIG !fileName! DOWNLOAD FAILED."
