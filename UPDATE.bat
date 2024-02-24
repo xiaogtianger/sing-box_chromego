@@ -3,9 +3,9 @@ setlocal enabledelayedexpansion
 
 
 set "scriptDir=%~dp0"
-set "subFolder=%scriptDir%sub"
+set "subFolder=%scriptDir%sub\sub-configs"
 set "wgetPath=%scriptDir%core\wget.exe"
-set "urlFile=%scriptDir%sub.txt"
+set "urlFile=%scriptDir%sub\sub-links.txt"
 
 set "timeoutSeconds=10"
 if not exist "!subFolder!" mkdir "!subFolder!"
