@@ -4,9 +4,9 @@ chcp 1252 > nul
 
 cd /d "%~dp0"
 
-set "subFolder=sub"
+set "subFolder=sub\sub-configs"
 set "counter=0"
-set "defaultChoice=1" 
+set "defaultChoice=1"
 
 color 0A
 echo.
@@ -39,7 +39,7 @@ if !choice! geq 1 if !choice! leq !counter! (
     ) else (
         echo Requesting Administrator Privileges...
         powershell -Command "& { Start-Process 'sing-box.exe' -ArgumentList 'run -c "!selectedFile!"' -Verb RunAs }"
-        start http://127.0.0.1:9090
+        start https://yacd.metacubex.one/?hostname=127.0.0.1&port=9090
         exit /b
     )
     
