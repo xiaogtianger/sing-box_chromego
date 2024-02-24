@@ -3,4 +3,4 @@ NAME=MyChromeGo.json
 URL=https://raw.githubusercontent.com/QiChaiQiChai/ChromeGo/main/sub/sing-box.json
 [LINK2]
 NAME=X(TIRD).json
-URL=https://sing-box-subscribe.qichai.link/config/https://api.xjichang.buzz/api/v1/client/subscribe?token=7b22e8b7ee15c978c91307148e19f1ec&flag=clash&file=https://raw.githubusercontent.com/QiChaiQiChai/sing-box-subscribe_configs/main/1.json
+URL=
