@@ -1,4 +1,4 @@
-name: Update and Release Sing-Box
+name: Update Sing-Box
 
 on:
   schedule:
@@ -31,6 +31,7 @@ jobs:
         fi
         echo "::set-output name=previous_version::$previous_version"
       shell: bash
+
     - name: Check if Update is Needed
       id: check_update
       run: |
@@ -41,6 +42,7 @@ jobs:
           echo "::set-output name=result::01"
         fi
       shell: bash
+
     - name: Download and Extract Sing-Box Release
       if: steps.check_update.outputs.result != '01'
       run: |
@@ -68,36 +70,3 @@ jobs:
         else
           echo "No changes detected in the repository."
         fi
-
-    - name: Create Release
-      if: steps.check_update.outputs.result != '01' 
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.REP_TOKEN }}
-      with:
-        tag_name: ${{ steps.get_latest_version.outputs.version }}
-        release_name: Release ${{ steps.get_latest_version.outputs.version }} 
-        body: This release includes the updated Sing-Box files.
-        draft: false
-        prerelease: false
-
-
-    - name: Zip Repository
-      if: steps.check_update.outputs.result != '01'
-      run: |
-        export LANG=en_US
-        zip -r -X sing-box-bat.zip . -x $GITHUB_WORKSPACE/core/log.txt -x .DS_Store -x Readme.md -x $GITHUB_WORKSPACE/core/LICENSE -x ".git/*" -x ".github/*"
-      shell: bash
-
-    - name: Upload Release Asset
-      if: steps.check_update.outputs.result != '01'
-      id: upload-release-asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.REP_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./sing-box-bat.zip
-        asset_name: sing-box-bat.zip
-        asset_content_type: application/zip
