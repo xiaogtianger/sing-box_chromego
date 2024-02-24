@@ -38,8 +38,8 @@ if !choice! geq 1 if !choice! leq !counter! (
         pause
     ) else (
         echo Requesting Administrator Privileges...
-        powershell -Command "& { Start-Process 'sing-box.exe' -ArgumentList 'run -c "!selectedFile!"' -Verb RunAs }"
-        start https://yacd.metacubex.one/?hostname=127.0.0.1&port=9090
+        powershell -Command "& { Start-Process 'sing-box.exe' -ArgumentList 'run -c "!selectedFile!"' -Verb RunAs -WindowStyle Hidden }"
+        start "" "https://yacd.metacubex.one/?hostname=127.0.0.1&port=9090"
         exit /b
     )
     
